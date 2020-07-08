@@ -2,11 +2,12 @@ import time
 import boot
 
 class Shutdown:
-    def __init__(self, relay, led, boot):
+    def __init__(self, battery, output, led, boot):
         self.shutdown_delay = 10
         self.shuttingdown_state = False
         self.shutdown_status = False
-        self.relay = relay
+        self.battery_relay = battery
+        self.output_relay = output
         self.boot = boot
         self.led = led
         self.shutting_color = self.led.RED
@@ -36,6 +37,8 @@ class Shutdown:
                 self.led.shutdown(self.off_color)
                 print ("Shutting Down")
                 self.boot.notify(False)
+                self.output_relay.value = False
                 self.shutdown_status = True
             else:
                 print ("Waiting to Shutdown")
+                self.battery_relay.value = False
