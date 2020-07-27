@@ -2,6 +2,11 @@ import board
 import neopixel
 
 class LED:
+    """Wraps around the neopixel class
+    Adds properties specific to the power supply such as
+    colors, the pin to which the neopixels are attached,
+    the number of pixels and assigns pixel numbers to
+    each pixel that serves a specific purpose"""
     def __init__(self):
         self.pixel_pin=board.D10
         self.num_pixels = 8
